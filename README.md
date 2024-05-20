@@ -27,10 +27,12 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>Deployment and Configuration Steps</h2>
 
-The first step will be creating a Virtual Machine (Windows Server) and Resource Group within Azure. When creating the Virtual Machine named "DC-1", choose to create a new Resource Group called AD-Lab.
+The first step will be creating a Virtual Machine (Windows Server) and Resource Group within Azure. When creating the Virtual Machine named "DC-1", choose to create a new Resource Group called AD-Lab. Choose a 2 vcpu size computer so you can use the other 2 vcpus for the other computer you will create in the next few steps. Allow the DC-1 server to create a new virtual network & subnet.
 <p>
  <img src="https://imgur.com/H3t2C4M.png">
 <p>
+<p>
+ While the DC-1 is deploying you can go ahead and create the Client-1 VM in Azure. Make sure to file Client-1 in the same resource group you just created as well as putting it in the same region. Choose Windows 10 as the image & proceed to the Networking tab. Use the same Virtual Network as DC-1. 
 <img src="https://imgur.com/N9uTiCO.png">
 </p>
 <p>
