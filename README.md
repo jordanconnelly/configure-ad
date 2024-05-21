@@ -32,8 +32,11 @@ The first step will be creating a Virtual Machine (Windows Server) and Resource 
  <img src="https://imgur.com/H3t2C4M.png">
 <p>
 <p>
- While the DC-1 is deploying you can go ahead and create the Client-1 VM in Azure. Make sure to file Client-1 in the same resource group you just created as well as putting it in the same region. Choose Windows 10 as the image & proceed to the Networking tab. Use the same Virtual Network as DC-1. 
-<img src="https://imgur.com/N9uTiCO.png">
+<br />
+ While the DC-1 is deploying you can go ahead and create the Client-1 VM in Azure. Make sure to file Client-1 in the same resource group you just created as well as putting it in the same region. Choose Windows 10 as the image & proceed to the Networking tab. Use the same Virtual Network as DC-1, in this case I named the vnet "AD-Lab-vnet".
+<p>
+<img src="https://imgur.com/fDtS7fa.png">
+<img src="https://imgur.com/xpIX3mv.png">
 </p>
 <p>
 Within Azure, create two virtual machines. Select "Window Data server 2022" for the first operating system. You will also want to select "2 VCPUs". Meaning, two machines can be used in this session. The second VM will be "Windows 10". The domain server will be named "DC-1" and the user will be named "Client". To ensure that the IP address of the server doesn't change throughout the process, select the "static" option in the network settings.
