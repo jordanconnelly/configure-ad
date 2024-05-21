@@ -124,8 +124,9 @@ From the Azure Portal, set Client-1’s DNS settings to the DC’s Private IP ad
 <img src="https://imgur.com/sGyKSpy.png">
 <br />
 </p>
-Login to Client-1 as the original admin user (labuser) and join it to the domain, this will restart the computer. In Client-1 open Settings to the About page, select "Rename this PC". Click "Change...", check the Domain box and type in "mydomain.com". This will prompt you to enter the login info for the Admin account created earlier (mydomain.com\jordan_admin)
+Login to Client-1 as the original admin user (labuser) and join it to the domain. In Client-1 open Settings to the About page, select "Rename this PC". Click "Change...", check the Domain box and type in "mydomain.com". This will prompt you to enter the login info for the Admin account created earlier (mydomain.com\jordan_admin). This will restart the computer.
 <p>
 <img src="https://imgur.com/UaYssaW.png">
 <br />
 </p>
+Log back into Client-1 as the Admin user created (mydomain.com\jordan_admin), open System Properties by right clicking the Start Menu and selecting "System". Click "Remote Desktop" on the right, then "Select users that can remotely access this PC". Click "Add..." and type in "domain users", select "Check Names" and "OK". Now all Domain Users will be allowed to login to this computer.
