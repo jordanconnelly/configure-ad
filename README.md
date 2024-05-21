@@ -34,7 +34,7 @@ The first step will be creating a Virtual Machine (Windows Server) and Resource 
  <p>
  </p>
 <br />
- While the DC-1 is deploying you can go ahead and create the Client-1 VM (Windows 10) in Azure. Make sure to file Client-1 in the same Resource Group you just created as well as putting it in the same region.Proceed to the Networking tab to select the same Virtual Network as DC-1, in this case I named it "AD-Lab-vnet".
+ While the DC-1 is deploying you can go ahead and create the Client-1 VM (Windows 10) in Azure. Make sure to file Client-1 in the same Resource Group you just created as well as putting it in the same region. Proceed to the Networking tab to select the same Virtual Network as DC-1, in this case I named it "AD-Lab-vnet".
 <p>
 <img src="https://imgur.com/fDtS7fa.png">
 <img src="https://imgur.com/xpIX3mv.png">
@@ -47,11 +47,14 @@ You can confirm the two VM's are using the same Virtual Network by opening both 
  <img src="https://imgur.com/mWvQCbU.png">
 </p>
 <br />
-At this point we will set the DC-1 NIC Private IP Address to static. Using a Static IP Address on a Domain Controller is necessary 
+At this point we will set the DC-1 NIC Private IP Address to static. Using a Static IP Address on a Domain Controller is necessary to allow Clients to reliably locate and connect to it. The Domain Controller will serve as the DNS server for the Clients. Open DC-1 and select Networking > Network Settings, then click on the Network interface (NIC) to open the configuration page.
+<img src="https://imgur.com/S2TAp0P.png">
 <p>
-<img src="https://imgur.com/cDYoinU.png"/>
- <img src="https://imgur.com/ZfZG8BP.png"/>
-  <img src="https://imgur.com/q9SoFke.png"/>
+<br />
+You will notice the Private IP Address is currently Dynamic. Click on "ipconfig1" to open the settings to set the IP Address to static, then confirm by observing the IP configurations again.
+<img src="https://imgur.com/zfwhB2b.png">
+ <img src="https://imgur.com/DREzxSp.png">
+  <img src="https://imgur.com/g2kJRgC.png">
 </p>
 <p>
   
