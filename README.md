@@ -24,17 +24,18 @@ This tutorial outlines the implementation of on-premises Active Directory within
 - Configuring TCP Proctols in Windows Firewall
 - Installing Active Directory and User Groups
 - Connecting Virtual Machine to Cloud Server and Adding Users
+</p>
+<br />
+<h2>Setting Up Resources in Azure</h2>
 
-<h2>Deployment and Configuration Steps</h2>
-
-The first step will be creating a Virtual Machine (Windows Server) and Resource Group within Azure. When creating the Virtual Machine named "DC-1", choose to create a new Resource Group called AD-Lab. Choose a 2 vcpu size computer so you can use the other 2 vcpus for the other computer you will create in the next few steps. Allow the DC-1 server to create a new Virtual Network & Subnet.
+The first step will be creating a Virtual Machine (Windows Server) and Resource Group within Azure. When creating the Virtual Machine named "DC-1", choose to create a new Resource Group called AD-Lab. Allow the DC-1 server to create a new Virtual Network & Subnet.
    "DC-1" will serve as our Domanin Controller, which is essentially a Server with Active Directory installed.
 <p>
  <img src="https://imgur.com/H3t2C4M.png">
  <p>
  </p>
 <br />
- While the DC-1 is deploying you can go ahead and create the Client-1 VM (Windows 10) in Azure. Make sure to file Client-1 in the same Resource Group you just created as well as putting it in the same region. Proceed to the Networking tab to select the same Virtual Network as DC-1, in this case I named it "AD-Lab-vnet".
+ While the DC-1 is deploying you can go ahead and create the Client-1 VM (Windows 10) in Azure. Make sure to file Client-1 in the same Resource Group and region you just created. Proceed to the Networking tab to select the same Virtual Network as DC-1, in this case I named it "AD-Lab-vnet".
 <p>
 <img src="https://imgur.com/fDtS7fa.png">
 <img src="https://imgur.com/xpIX3mv.png">
@@ -47,7 +48,7 @@ You can confirm the two VM's are using the same Virtual Network by opening both 
  <img src="https://imgur.com/mWvQCbU.png">
 </p>
 <br />
-At this point we will set the DC-1 NIC Private IP Address to static. Using a Static IP Address on a Domain Controller is necessary to allow Clients to reliably locate and connect to it. The Domain Controller will serve as the DNS server for the Clients. Open DC-1 and select Networking > Network Settings, then click on the Network interface (NIC) to open the configuration page.
+At this point we will set the DC-1 NIC Private IP Address to static. Open DC-1 and select Networking > Network Settings, then click on the Network interface (NIC) to open the configuration page. Using a Static IP Address on a Domain Controller is necessary to allow Clients to reliably locate and connect to it. The Domain Controller will serve as the DNS server for the Clients.
 <img src="https://imgur.com/S2TAp0P.png">
 <p>
 <br />
@@ -56,23 +57,75 @@ You will notice the Private IP Address is currently Dynamic. Click on "ipconfig1
  <img src="https://imgur.com/DREzxSp.png">
   <img src="https://imgur.com/g2kJRgC.png">
 </p>
-<p>
-  
-Using remote desktop, log into the domain server. If you aren't familiar with remote desktop, watch this quick tutorial: https://www.youtube.com/watch?v=naUGaqqRA54. In the lower right search bar, type in "Firewall ". Select "Windows Defender Firewall With Advanced Security". Click on the "Protocols" section (Illustrated above). Right-click on ICMP Echo diagnostics and enable ICMPv4 TCP Protocols on Windows Firewall. Once connectivity is established between both machines, install Active Directory and add a domain. The machine restarts by default and log back in with the new domain create and the pre-existing username. Create Organizational Units (OU) and a couple of users. Give one of the users administrator properties by right-clicking on the user, selecting "properties", select "member" tab and add them to "Domain Admins" group. Click "check names" button after typing in "domain admins" to re-affirm the existence of the group name.
+<br />
+<h2>Ensure Connectivity between Client & Domain Controller</h2>
+</p>
+Login to the Domain Controller with Remote Desktop and enable ICMPv4 on the local Windows Firewall. Type 'firewall" into the Start menu and select "Windows Defender Firewall with Advanced Security". Click on "Inbound Rules" from the menu on the left and sort by Protocol. Enable the two ICMP Echo Requests. This allows inbound ICMP traffic that we will use in the next step, without enabling this the Client-1 will not be able to send Ping requests to the DC.
+<img src="https://imgur.com/wIybYB4.png">
+<img src="https://imgur.com/VZ6qBsi.png">
 </p>
 <br />
-<img src="https://imgur.com/7ubwpEk.png"/>
-<p>
-<img src="https://imgur.com/c84A9HK.png"/>
+Login to Client-1 using Remote Desktop, open the Command Prompt (Start>cmd>Enter) and ping DC-1's Private IP Address using "ping -t (ip address)". If done correctly, you will get perpetual Ping replies from DC-1.
+<img src="https://imgur.com/HBttApi.png">
 </p>
-<p>
-Use the Microsoft Azure portal to change the DNS settings of the client machine to the server's private IP address (Illustrated above). Ensure connectivity and then log back into the server to verify that my "client" computer is listed in the "computers" container of the Active Directory domain root.
-  <img src="https://imgur.com/TFkdUdP.png"/>
-  <img src="https://imgur.com/R9z70ej.png"/>
-
-</p>
-Logged back into the client machine with the admin user login and allowed domain users access to remote desktop via system properties. Log out and log into the domain as the admin user. Using powershell as an administrator allows you to run a script that generates random users to the OU within Active Directory. You can also manually create more users.
-
-<img src="https://imgur.com/DJck9Dm.png"/>
 <br />
-Lastly, pick a random user from the OU and log into the client machine.
+<h2>Installing Active Directory</h2>
+</p>
+Open DC-1 in Remote Desktop, open the Server Manager from the Start menu if it isn't already open. Click on "Add roles and features, Next, select "Role-based installation", select DC-1 as the Destination Server, check the box for "Active Directory Domain Services" and Add Features. Select Next until you can click Install.
+<p>
+<img src="https://imgur.com/tNMHcbP.png">
+<br />
+</p>
+To finish installing Active Directory click on the Notifications tab at the top of the page and select "Promote this server to a domain controller".
+
+<img src="https://imgur.com/9z3yD8k.png">
+<br />
+</p>
+In the pop-up window select "Add a new forest" and type in the Root domain name. Type in a password for the DSRM on the next page. Use all the default settings and click next until you can click Install. Once it has finished installing the computer will need to restart, kicking you out of Remote Desktop.
+<p>
+<img src="https://imgur.com/esjZWJy.png">
+<img src="https://imgur.com/lGJEqVW.png">
+<br />
+</p>
+Log back into DC-1 with the FQDN (Fully Qualified Domain Name) as user: mydomain.com\labuser. This is because the DC-1 is now a Domain Controller, so you are logging in as a user of that instead of a normal computer account user.
+<p>
+<img src="https://imgur.com/5XzikYB.png">
+<br />
+</p>
+<h2>Creating an Administrator & Normal User Account in Active Directory</h2>
+</p>
+Now we will create Organizational Units in Active Directory and a couple users. First, type active directory into the Start menu of DC-1 and select "Active Directory Users and Computers" to open the UI for AD.
+<p>
+<img src="https://imgur.com/aBQwkO5.png">
+<br />
+</p>
+Right click on the "mydomain.com" tab on the left and select New>Organizational Unit to create a new folder for Admins and Employees.
+<p>
+<img src="https://imgur.com/tg8DifW.png">
+<br />
+</p>
+Open the Admins folder, right click in the blank area to add a new Admin user and password, click Finish.
+<p>
+<img src="https://imgur.com/3q5wHOb.png
+<br />
+</p>
+To make the new user a Domain Admin, right click the user account and open Properties. Within Properties select the "Member Of" tab and click "Add...". Type "domain" in the object names box and click "Check Names". Select "Domain Admins" from the list & Apply.
+<p>
+<img src="https://imgur.com/vpDp4PD.png">
+<br />
+</p>
+Log out of DC-1 and log back in with DC-1's Public IP Address as the admin user you just created "mydomain.com\jordan_admin". Minimize DC-1 for now.
+</p>
+<br />
+<h2>Join Client-1 to Your Domain (mydomain.com)</h2>
+</p>
+From the Azure Portal, set Client-1’s DNS settings to the DC’s Private IP address by going to Client-1 Network Settings, open the NIC, and select DNS Servers on the left menu. Change the DNS Servers from "Inherit from VM" to "Custom", this is where you input the the DC's Private IP Address. Click Save. Restart Client-1 from the Azure Portal, this will flush the DNS cache.
+<p>
+<img src="https://imgur.com/sGyKSpy.png">
+<br />
+</p>
+Login to Client-1 as the original admin user (labuser) and join it to the domain, this will restart the computer. In Client-1 open Settings to the About page, select "Rename this PC". Click "Change...", check the Domain box and type in "mydomain.com".
+<p>
+<img src="https://imgur.com/3NyHchK.png">
+<br />
+</p>
