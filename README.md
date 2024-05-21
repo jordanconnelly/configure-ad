@@ -124,8 +124,8 @@ From the Azure Portal, set Client-1’s DNS settings to the DC’s Private IP ad
 <img src="https://imgur.com/sGyKSpy.png">
 <br />
 </p>
-Login to Client-1 as the original admin user (labuser) and join it to the domain, this will restart the computer. In Client-1 open Settings to the About page, select "Rename this PC". Click "Change...", check the Domain box and type in "mydomain.com".
+Login to Client-1 as the original admin user (labuser) and join it to the domain, this will restart the computer. In Client-1 open Settings to the About page, select "Rename this PC". Click "Change...", check the Domain box and type in "mydomain.com". This will prompt you to enter the login info for the Admin account created earlier (mydomain.com\jordan_admin)
 <p>
-<img src="https://imgur.com/3NyHchK.png">
+<img src="https://imgur.com/UaYssaW.png">
 <br />
 </p>
