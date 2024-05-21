@@ -27,22 +27,27 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>Deployment and Configuration Steps</h2>
 
-The first step will be creating a Virtual Machine (Windows Server) and Resource Group within Azure. When creating the Virtual Machine named "DC-1", choose to create a new Resource Group called AD-Lab. Choose a 2 vcpu size computer so you can use the other 2 vcpus for the other computer you will create in the next few steps. Allow the DC-1 server to create a new virtual network & subnet.
+The first step will be creating a Virtual Machine (Windows Server) and Resource Group within Azure. When creating the Virtual Machine named "DC-1", choose to create a new Resource Group called AD-Lab. Choose a 2 vcpu size computer so you can use the other 2 vcpus for the other computer you will create in the next few steps. Allow the DC-1 server to create a new Virtual Network & Subnet.
+   "DC-1" will serve as our Domanin Controller, which is essentially a Server with Active Directory installed.
 <p>
  <img src="https://imgur.com/H3t2C4M.png">
-<p>
-<p>
+ <p>
+ </p>
 <br />
- While the DC-1 is deploying you can go ahead and create the Client-1 VM in Azure. Make sure to file Client-1 in the same resource group you just created as well as putting it in the same region. Choose Windows 10 as the image & proceed to the Networking tab. Use the same Virtual Network as DC-1, in this case I named the vnet "AD-Lab-vnet".
+ While the DC-1 is deploying you can go ahead and create the Client-1 VM (Windows 10) in Azure. Make sure to file Client-1 in the same Resource Group you just created as well as putting it in the same region.Proceed to the Networking tab to select the same Virtual Network as DC-1, in this case I named it "AD-Lab-vnet".
 <p>
 <img src="https://imgur.com/fDtS7fa.png">
 <img src="https://imgur.com/xpIX3mv.png">
 </p>
 <p>
-Within Azure, create two virtual machines. Select "Window Data server 2022" for the first operating system. You will also want to select "2 VCPUs". Meaning, two machines can be used in this session. The second VM will be "Windows 10". The domain server will be named "DC-1" and the user will be named "Client". To ensure that the IP address of the server doesn't change throughout the process, select the "static" option in the network settings.
+<br />
+You can confirm the two VM's are using the same Virtual Network by opening both VM's and looking at the Virtual Network on the right of the page. The VM's will not be able to communicate if they are on different Virtual Networks.
+<p>
+ <img src="https://imgur.com/IwchXKw.png">
+ <img src="https://imgur.com/mWvQCbU.png">
 </p>
 <br />
-
+At this point we will set the DC-1 NIC Private IP Address to static. Using a Static IP Address on a Domain Controller is necessary 
 <p>
 <img src="https://imgur.com/cDYoinU.png"/>
  <img src="https://imgur.com/ZfZG8BP.png"/>
