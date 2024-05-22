@@ -146,3 +146,8 @@ Open the Employee folder we created earlier in Active Directory Users and Comput
 <br />
 </p>
 You can now login to Client-1 as one of the 1000 users we just created, I chose the user "bas.rik". 
+<p>
+<img src="https://imgur.com/8RvHj8t.png">
+<img src="https://imgur.com/WDZHIcT.png">
+<br />
+</p>
