@@ -104,7 +104,7 @@ Right click on the "mydomain.com" tab on the left and select New>Organizational 
 <img src="https://imgur.com/tg8DifW.png">
 <br />
 </p>
-Open the Admins folder, right click in the blank area to add a new Admin user and password, click Finish.
+Open the Admins folder, right click in the blank area to add a new Admin user and password, click Finish. Add the admin user just created to the Domain Admins by right clicking on the user, selecting Properties>Member Of>typing "domain" in the text box>Check Names>select Domain Admins>OK>Apply.
 <p>
 <img src="https://imgur.com/3q5wHOb.png
 <br />
