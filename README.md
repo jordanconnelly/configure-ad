@@ -130,3 +130,14 @@ Login to Client-1 as the original admin user (labuser) and join it to the domain
 <br />
 </p>
 Log back into Client-1 as the Admin user created (mydomain.com\jordan_admin), open System Properties by right clicking the Start Menu and selecting "System". Click "Remote Desktop" on the right, then "Select users that can remotely access this PC". Click "Add..." and type in "domain users", select "Check Names" and "OK". Now all Domain Users will be allowed to login to this computer.
+</p>
+<br />
+<h2>Creating Users and Logging In As One</h2>
+</p>
+While logged into DC-1 in the Admin account, run PowerShell_ISE from the Start menu as an administrator. Create a new file and paste the contents of the script ((https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it. Run the script to abserve the accounts being created.
+<p>
+<img src="https://imgur.com/pFxvFf1.png">
+<img src="https://imgur.com/v6C36pk.png">
+<br />
+</p>
+You can now login to Client-1 as one of the 1000 users we just created, I chose the user "bas.rik"
