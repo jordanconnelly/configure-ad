@@ -134,7 +134,7 @@ Log back into Client-1 as the Admin user created (mydomain.com\jordan_admin), op
 <br />
 <h2>Creating Users and Logging In As One</h2>
 </p>
-While logged into DC-1 in the Admin account, run PowerShell_ISE from the Start menu as an administrator. Create a new file and paste the contents of the script ((https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it. Run the script to abserve the accounts being created.
+While logged into DC-1 in the Admin account, run PowerShell_ISE from the Start menu as an administrator. Create a new file and paste the contents of the script ((https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it. Run the script to observe the accounts being created.
 <p>
 <img src="https://imgur.com/pFxvFf1.png">
 <img src="https://imgur.com/v6C36pk.png">
@@ -145,7 +145,7 @@ Open the Employee folder we created earlier in Active Directory Users and Comput
 <img src="https://imgur.com/Zi3jLyp.png">
 <br />
 </p>
-You can now login to Client-1 as one of the 1000 users we just created, I chose the user "bas.rik". 
+You can now log in to Client-1 as one of the 1000 users we just created, I chose the user "bas.rik". 
 <p>
 <img src="https://imgur.com/8RvHj8t.png">
 <img src="https://imgur.com/WDZHIcT.png">
