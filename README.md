@@ -140,4 +140,9 @@ While logged into DC-1 in the Admin account, run PowerShell_ISE from the Start m
 <img src="https://imgur.com/v6C36pk.png">
 <br />
 </p>
-You can now login to Client-1 as one of the 1000 users we just created, I chose the user "bas.rik"
+Open the Employee folder we created earlier in Active Directory Users and Computers to view the 1000 new Employees we created.
+<p>
+<img src="https://imgur.com/Zi3jLyp.png">
+<br />
+</p>
+You can now login to Client-1 as one of the 1000 users we just created, I chose the user "bas.rik". 
